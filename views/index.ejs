@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <div class="main min-h-screen bg-zinc-900 text-white">
+        <div class="form p-10 flex flex-col">
+            <form action="/create" method="post">
+                <input type="text" placeholder="title" class="m-1 w-full block bg-zinc-800 rounded-md text-2xl" name="title">
+                <textarea placeholder="text here" class="m-1 w-full resize-none block bg-zinc-800 rounded-md text-2xl" name="content"></textarea>
+                <button class="m-1 bg-blue-600 w-min p-2 cursor-pointer rounded-md" type="submit">submit</button>
+            </form>
+        </div>
+
+        <div class="tasks p-10 flex flex-col gap-4">
+            
+            <% if(files.length >0){ %>
+                <% files.forEach(function(val){ %>
+                    <div class="task min-w-72 px-3 py-4 bg-zinc-800">
+                        <h1 class="text-3xl tracking-tighter"><%= val %></h1>
+                        <a href="/files/<%= val %>" class="text-blue-600 inline-block m-3">Read More.</a>
+                        <a href="/edit/<%= val %>" class="text-blue-600 inline-block m-3">edit file name</a>
+                    </div>
+                <% }) %>
+            <% } else {%> 
+                    <h3 class="text-zinc-700 px-3">No tasks to show</h3>
+                <% } %>
+        </div>
+    </div>
+</body>
+</html>
